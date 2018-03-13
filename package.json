@@ -1,0 +1,18 @@
+{
+    "name": "ajv2",
+    "version": "1.0.0",
+    "description": "Typescript ajv2",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "ajv"
+    ],
+    "author": "truongpn77@gmail.com",
+    "license": "ISC",
+    "dependencies": {
+        "ajv": "^6.2.1",
+        "utils-nodejs": "^1.0.0"
+    }
+}
