@@ -9,6 +9,10 @@
     "keywords": [
         "ajv"
     ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/truonghtn/ajv2.git"
+    },
     "author": "truongpn77@gmail.com",
     "license": "ISC",
     "dependencies": {
