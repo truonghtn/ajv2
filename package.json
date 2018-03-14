@@ -1,6 +1,6 @@
 {
     "name": "ajv2",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Typescript ajv2",
     "main": "index.js",
     "scripts": {
@@ -16,6 +16,7 @@
     "author": "truongpn77@gmail.com",
     "license": "ISC",
     "dependencies": {
+        "@types/node": "^9.4.7",
         "ajv": "^6.2.1",
         "utils-nodejs": "^1.0.0"
     }
