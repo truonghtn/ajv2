@@ -21,33 +21,33 @@ function pullV2Name(name: string): ajv2NameDesc {
             isV2: false,
             name: name,
             isRequired: false,
-            token: <SPECIAL_TOKEN>name
+            token: <SPECIAL_TOKEN> name
         };
     }
 
     if (name.startsWith('@')) {
-        return <ajv2NameDesc>{
+        return <ajv2NameDesc> {
             isV2: true,
             name: name.substr(1, name.length - 1),
             isRequired: false
         };
     }
     else if (name.startsWith('+@')) {
-        return <ajv2NameDesc>{
+        return <ajv2NameDesc> {
             isV2: true,
             name: name.substr(2, name.length - 2),
             isRequired: true
         };
     }
     else if (name.startsWith('+')) {
-        return <ajv2NameDesc>{
+        return <ajv2NameDesc> {
             isV2: false,
             name: name.substr(1, name.length - 1),
             isRequired: true
         };
     }
-
-    return <ajv2NameDesc>{
+    
+    return <ajv2NameDesc> {
         isV2: false,
         name: name,
         isRequired: false
@@ -102,7 +102,7 @@ function craftStringSchema(schema: string): any {
                 retSch[keyword] = val;
                 continue;
             }
-
+            
             const patternRegEx = /^p=(.*)$/;
             if (patternRegEx.test(desc)) {
                 const matches = desc.match(patternRegEx);
@@ -126,14 +126,18 @@ function craftStringSchema(schema: string): any {
 
                 let keyword = null;
                 if (cmp == '>') {
-                    retSch.minimum = val;
-                    if (!eq) {
-                        retSch.exclusiveMinimum = true;
+                    if (eq) {
+                        retSch.minimum = val;
+                    }
+                    else {
+                        retSch.exclusiveMinimum = val;
                     }
                 }
                 else if (cmp == '<') {
-                    retSch.maximum = val;
-                    if (!eq) {
+                    if (eq) {
+                        retSch.maximum = val;
+                    }
+                    else {
                         retSch.exclusiveMaximum = true;
                     }
                 }
@@ -201,13 +205,13 @@ function craftRawMapSchema(schema: _.Dictionary<any>): any {
     return ret;
 }
 
-export function ajv2() {
+export function newAjv2() {
     const _ajv = ajv();
     return (sch: any, log: boolean = false) => {
         const ajvSch = craft(sch);
-        if (log) { console.log(JSON.stringify(ajvSch)) };
+        if (log) {console.log(JSON.stringify(ajvSch))};
         return _ajv.compile(ajvSch);
     }
 }
 
-export default ajv2;
+export default newAjv2;
